@@ -32,12 +32,12 @@ public class ProductServiceImpl implements ProductService {
         dataVO.setMsg("");
 //        dataVO.setCount(productMapper.selectCount(null));
 
-        IPage<Product> productIPage = new Page<>(page,limit);
+        IPage<Product> productIPage = new Page<Product>(page,limit);
         IPage<Product> result =  productMapper.selectPage(productIPage,null);
         dataVO.setCount(result.getTotal());
 
         List<Product> productList = result.getRecords();
-        List<ProductVO> productVOList = new ArrayList<>();
+        List<ProductVO> productVOList = new ArrayList<ProductVO>();
         for (Product product : productList){
             ProductVO productVO = new ProductVO();
             BeanUtils.copyProperties(product,productVO);
